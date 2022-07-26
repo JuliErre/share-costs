@@ -8,67 +8,75 @@
     </ion-row>
     <ion-row>
 
-        
-           <ion-text> <h4>Select from all products</h4> </ion-text>
-        
+
+        <ion-text>
+            <h4>Select from all products</h4>
+        </ion-text>
+
     </ion-row>
     <ion-row>
 
-        
-            <ion-row *ngFor="let product of productService.productsArray">
-                <ion-button  fill="outline" (click)="addProductToContact(product)">
-                    <span class="name">{{ product.name }} </span>
-                    <span class="price"> - {{ product.price }}$</span>
-                </ion-button>
-            </ion-row>
-            
+
+        <ion-row *ngFor="let product of productService.productsArray">
+            <ion-button fill="outline" (click)="addProductToContact(product)">
+                <span class="name">{{ product.name }} </span>
+                <span class="price"> - {{ product.price }}$</span>
+            </ion-button>
         </ion-row>
-        
-        <ion-row>
+
+    </ion-row>
+
+    <ion-row>
         <ion-grid>
 
-            <ion-text> <h4> Set contacts bills </h4> </ion-text>
+            <ion-text>
+                <h4> Set contacts bills </h4>
+            </ion-text>
             <form onkeypress="check(event)">
-                
-                
+
+
 
                 <ion-list>
                     <ion-label>Contact</ion-label>
                     <ion-item>
-                      <ion-select placeholder="Select"  #selectContact (click)="seeProducts(selectContact.value)">
-                        <ion-select-option *ngFor="let contact of contactService.contactsArray"
-                        value="{{contact.name + '.' + contact.phoneNumber}}">{{ contact.name }}</ion-select-option>
-                      </ion-select>
+                        <ion-select placeholder="Select" #selectContact  (click)="seeProducts(selectContact.value)" >
+                            <ion-select-option *ngFor="let contact of contactService.contactsArray"
+                            
+                                value="{{contact.name + '.' + contact.phoneNumber}}">{{ contact.name }}
+                                
+                            </ion-select-option>
+                        </ion-select>
                     </ion-item>
-                  </ion-list>
-           
-            
-            <p>Purchased products:</p>
-            <div>
-                <div *ngFor="let product of contactProducts">
-                    <ion-button type="button" (click)="addProductToContact(product)">
-                        <span class="name">{{ product.name }} </span>
-                        <span class="price"> - {{ product.price }}$</span>
-                    </ion-button>
-                </div>
-            </div>
-            
-            <ion-button color="dark" class="rounded-xl bg-white font-semibold w-full border-2 border-gray-400 border-solid"
-            (click)="createContact(selectContact.value)">
-            Confirm information
-        </ion-button>
-    </form>
-</ion-grid>
-</ion-row>
+                </ion-list>
 
-<ion-list class="w-full  max-w-xl flex flex-col items-start  ">
-    <ion-item *ngFor="let contact of contactsList">
-        <ion-label class="flex  items-center justify-center gap-2">
+
+                <p>Purchased products:</p>
+                <div>
+                    <div *ngFor="let product of contactProducts">
+                        <ion-button type="button" (click)="addProductToContact(product)">
+                            <span class="name">{{ product.name }} </span>
+                            <span class="price"> - {{ product.price }}$</span>
+                        </ion-button>
+                    </div>
+                </div>
+
+                <ion-button color="dark"
+                    class="rounded-xl bg-white font-semibold w-full border-2 border-gray-400 border-solid"
+                    (click)="createContact(selectContact.value)">
+                    Confirm information
+                </ion-button>
+            </form>
+        </ion-grid>
+    </ion-row>
+
+    <ion-list class="w-full  max-w-xl flex flex-col items-start  ">
+        <ion-item *ngFor="let contact of contactsList">
+            <ion-label class="flex  items-center justify-center gap-2">
                 <span class="name  max-w-2xl">{{ contact.name }}</span>
                 <span class="price  max-w-2xl"> pays: {{ contact.totalToPay }}$</span>
                 <ion-button color="light" class="rounded-xl bg-white font-semibold" (click)="sendMessage(contact)">
                     <ion-icon name="logo-whatsapp"></ion-icon>
-                    </ion-button>
+                </ion-button>
             </ion-label>
         </ion-item>
         <ion-button color="dark" type="button"

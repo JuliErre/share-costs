@@ -20,6 +20,8 @@ export class CostCalculatorComponent implements OnInit {
 
   ngOnInit(): void { }
 
+
+
   addProductToContact(getProduct: Product): void {
 
     if (!this.contactProducts.includes(getProduct)) {
@@ -71,7 +73,7 @@ export class CostCalculatorComponent implements OnInit {
       getContact = new Contact(getContactString.split(".")[0], getContactString.split(".")[1]);
       console.log("No debería pasar");
     }
-
+    console.log(getContact.productsOwned);
     this.contactProducts = [];
     this.contactProducts = getContact.productsOwned.slice();
     getContact.setProducts(this.contactProducts);
@@ -97,7 +99,8 @@ export class CostCalculatorComponent implements OnInit {
   }
   sendMessage(contact: Contact): void {
 
-    window.open(`https://web.whatsapp.com/send?phone=${contact.phoneNumber}&text=${contact.name} tiene que pagar $${contact.totalToPay}`, '_blank');
+    // window.open(`https://web.whatsapp.com/send?phone=${contact.phoneNumber}&text=${contact.name} tiene que pagar $${contact.totalToPay}`, '_blank');
+    window.open(`https://wa.me/${contact.phoneNumber}?text=${contact.name} tiene que pagar $${contact.totalToPay}`, '_blank');
     const keyEvent = new KeyboardEvent("keydown", { key: "Enter" });
     document.body.dispatchEvent(keyEvent);
   }
@@ -105,5 +108,18 @@ export class CostCalculatorComponent implements OnInit {
   check(event: Event): void {
 
     event.preventDefault();
+  }
+
+  handleChange(contact : string): void {
+      
+      this.contactsList.forEach(element => {
+  
+        if (element.name === contact) {
+  
+          this.contactProducts = element.productsOwned.slice();
+        }
+      }
+      );
+
   }
 }
