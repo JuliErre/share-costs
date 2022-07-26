@@ -17,7 +17,11 @@ export class UploadProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  uploadToFirebase(setProductName: string, setProductPrice: string) {
+  uploadToFirebase(setProductName: any, setProductPrice: any) {
     this.productService.setNewProduct(new Product(setProductName, Number(setProductPrice)));
+  }
+
+  deleteProduct(getProduct: Product): void {
+    this.productService.deleteProduct(getProduct);
   }
 }

@@ -16,7 +16,11 @@ export class UploadContactsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  uploadToFirebase(setContactName: string, setContactPhoneNumber: string) {
+  uploadToFirebase(setContactName: any, setContactPhoneNumber: any) {
     this.contactService.setNewContact(new Contact(setContactName, setContactPhoneNumber));
+  }
+
+  deleteContact(getContact: Contact): void {
+    this.contactService.deleteContact(getContact);
   }
 }

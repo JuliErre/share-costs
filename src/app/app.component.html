@@ -1,7 +1,31 @@
 <ion-app>
-  <ion-router-outlet>
-   <app-cost-calculator></app-cost-calculator>
-    <app-upload-contacts></app-upload-contacts>
-    <app-upload-products></app-upload-products>
-  </ion-router-outlet>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Share Costs</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-router-outlet class="ion-align-items-center">
+      <ion-content [scrollEvents]="true" >
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="12" size-xl ion-align-items-center>
+            
+            <app-cost-calculator></app-cost-calculator>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          
+          <app-upload-contacts></app-upload-contacts>
+        </ion-row>
+        <ion-row>
+          <app-upload-products></app-upload-products>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+    </ion-router-outlet>
 </ion-app>
+
+
+
+    
